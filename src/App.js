@@ -31,7 +31,7 @@ function App() {
   return (
     <>
     <div>
-      <h1>Galaxy Map</h1>
+      <h1>Solar System<br />Map</h1>
     </div>
     <Canvas dpr={[1.5, 2]} linear shadows>
       <fog attach="fog" args={['#272730', 16, 30]} />
