@@ -1,0 +1,16 @@
+.dropdown-options {
+  position: absolute;
+  background-color: gray;
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  padding: 15px 10px;
+  gap: 10px;
+}
+
+.dropdown:hover {
+  background-color: gray;
+}
+
+.dropdown:hover .dropdown-options { display: flex;  }

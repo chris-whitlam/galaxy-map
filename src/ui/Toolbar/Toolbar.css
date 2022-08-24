@@ -1,0 +1,20 @@
+.toolbar {
+  position: relative;
+  background-color: peru;
+  width: 100vw;
+  height: 2vh;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 10;
+}
+
+button {
+  font-size: 1em;
+}
+
+label {
+  cursor: pointer;
+  user-select: none;
+}

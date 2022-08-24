@@ -1,0 +1,12 @@
+.inspector {
+  top: 3vh;
+  right: 0;
+  border-radius: 0 0 0 20px;
+}
+
+.stats-container {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 10px 40px;
+}
