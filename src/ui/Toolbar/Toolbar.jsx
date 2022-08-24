@@ -1,13 +1,25 @@
+import { useDispatch } from 'react-redux';
 import Dropdown from '../Dropdown/Dropdown';
 import Checkbox from '../Checkbox/Checkbox';
+import { changeScene } from '../../store/sceneSlice';
 import './Toolbar.css';
 
 function Toolbar() {
+  const dispatch = useDispatch();
+
+  const handleSceneChange = (sceneName) => {
+    dispatch(changeScene(sceneName));
+  };
+
   return (
     <div className="toolbar">
       <Dropdown name="Scenes">
-        <button type="button">Solar System</button>
-        <button type="button">Earth</button>
+        <button type="button" onClick={() => handleSceneChange('solarSystem')}>
+          Solar System
+        </button>
+        <button type="button" onClick={() => handleSceneChange('earth')}>
+          Earth
+        </button>
       </Dropdown>
       <Dropdown name="Interface">
         <Checkbox name="showOrbits">Show Orbits</Checkbox>

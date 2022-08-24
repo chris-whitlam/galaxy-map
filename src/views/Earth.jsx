@@ -9,17 +9,7 @@ function SolarSystem({ dispatch }) {
     dispatch(planetSelected(planetData));
   }, []);
 
-  const handleSunClick = useCallback(() => {
-    dispatch(planetUnSelected());
-  }, []);
-
-  return (
-    <>
-      <Sun onClick={handleSunClick} />
-      <Earth position={[5, 0, 0]} onClick={handlePlanetClick} />
-      <Moon position={[8, 0, 0]} onClick={handlePlanetClick} />
-    </>
-  );
+  return <Earth position={[0, 0, 0]} onClick={handlePlanetClick} />;
 }
 
 export default SolarSystem;
