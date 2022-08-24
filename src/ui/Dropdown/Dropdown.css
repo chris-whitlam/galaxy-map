@@ -1,3 +1,12 @@
+.dropdown {
+  border-radius: 10px 10px 0 0;
+}
+
+.dropdown:hover {
+  background-color: gray;
+
+}
+
 .dropdown-options {
   position: absolute;
   background-color: gray;
@@ -7,10 +16,9 @@
   text-align: left;
   padding: 15px 10px;
   gap: 10px;
+  border-radius: 0 10px 10px 10px;
 }
 
-.dropdown:hover {
-  background-color: gray;
-}
+
 
 .dropdown:hover .dropdown-options { display: flex;  }

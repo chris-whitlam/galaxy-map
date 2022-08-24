@@ -2,12 +2,12 @@ import { TextureLoader } from 'three';
 import { useLoader } from '@react-three/fiber';
 import { Sphere } from '@react-three/drei';
 
-function Moon({ position, relativeScale = 0.27, onClick }) {
-  const base = useLoader(TextureLoader, '/images/moon.jpg');
+function Sun({ position, relativeScale = 2, onClick }) {
+  const base = useLoader(TextureLoader, '/images/sun.jpg');
 
   return (
     <Sphere
-      onClick={() => onClick('moon')}
+      onClick={onClick}
       position={position}
       scale={[relativeScale, relativeScale, relativeScale]}
     >
@@ -16,4 +16,4 @@ function Moon({ position, relativeScale = 0.27, onClick }) {
   );
 }
 
-export default Moon;
+export default Sun;

@@ -11,6 +11,9 @@ const planetSlice = createSlice({
         ...state,
         ...action.payload
       };
+    },
+    planetUnSelected(state, action) {
+      return {};
     }
   }
 });

@@ -1,7 +1,4 @@
 const planetaryData = {
-  sun: {
-    name: 'sun'
-  },
   earth: {
     name: 'earth',
     mass: 5.97,

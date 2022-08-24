@@ -9,9 +9,12 @@ function Toolbar() {
         <button type="button">Solar System</button>
         <button type="button">Earth</button>
       </Dropdown>
-      <Dropdown name="View">
+      <Dropdown name="Interface">
         <Checkbox name="showOrbits">Show Orbits</Checkbox>
         <Checkbox name="hideInterface">Hide Interface</Checkbox>
+      </Dropdown>
+      <Dropdown name="Camera">
+        <button type="button">Center Camera</button>
       </Dropdown>
     </div>
   );

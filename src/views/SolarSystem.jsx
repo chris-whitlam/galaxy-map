@@ -2,24 +2,27 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls, PerspectiveCamera, Stars } from '@react-three/drei';
 import { useDispatch } from 'react-redux';
 import { useCallback } from 'react';
-import { Earth, Moon } from '../objects';
-import { planetSelected } from '../store/planetSlice';
+import { Earth, Moon, Sun } from '../objects';
+import { planetSelected, planetUnSelected } from '../store/planetSlice';
 import planetaryData from '../data/planetaryData';
 
 function SolarSystem() {
   const dispatch = useDispatch();
 
-  const handleClick = useCallback((planetName) => {
+  const handlePlanetClick = useCallback((planetName) => {
     const planetData = planetaryData[planetName];
     dispatch(planetSelected(planetData));
   }, []);
 
+  const handleSunClick = useCallback(() => {
+    dispatch(planetUnSelected());
+  }, []);
+
   return (
     <Canvas dpr={[1.5, 2]} linear shadows>
-      <fog attach="fog" args={['#272730', 16, 30]} />
       <ambientLight intensity={0.75} />
       <OrbitControls />
-      <Stars radius={500} depth={50} count={1000} factor={10} />
+      <Stars radius={1000} depth={100} count={2000} factor={10} />
       <PerspectiveCamera makeDefault position={[0, 0, 16]} fov={75}>
         <pointLight intensity={1} position={[-10, -25, -10]} />
         <spotLight
@@ -32,8 +35,9 @@ function SolarSystem() {
           shadow-bias={-0.0001}
         />
       </PerspectiveCamera>
-      <Earth onClick={handleClick} />
-      <Moon position={[5, 0, 0]} onClick={handleClick} />
+      <Sun onClick={handleSunClick} />
+      <Earth position={[5, 0, 0]} onClick={handlePlanetClick} />
+      <Moon position={[8, 0, 0]} onClick={handlePlanetClick} />
     </Canvas>
   );
 }
