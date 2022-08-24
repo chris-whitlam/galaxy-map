@@ -23,7 +23,7 @@ function SolarSystem() {
       <ambientLight intensity={0.75} />
       <OrbitControls />
       <Stars radius={1000} depth={100} count={2000} factor={10} />
-      <PerspectiveCamera makeDefault position={[0, 0, 16]} fov={75}>
+      <PerspectiveCamera makeDefault position={[0, 0, 16]} fov={75} far={10000}>
         <pointLight intensity={1} position={[-10, -25, -10]} />
         <spotLight
           castShadow
