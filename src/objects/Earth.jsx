@@ -1,24 +1,30 @@
+import React from 'react';
 import { TextureLoader } from 'three';
-import { useLoader, useFrame } from '@react-three/fiber';
-import { useRef } from 'react';
+import { useLoader } from '@react-three/fiber';
 import { Sphere } from '@react-three/drei';
 
-function Earth({ position, relativeScale = 1, onClick }) {
-  const base = useLoader(TextureLoader, '/images/earth.jpg');
-  const ref = useRef();
+const Earth = React.forwardRef(
+  ({ position, relativeScale = 1, onClick }, ref) => {
+    const base = useLoader(TextureLoader, '/images/earth/base.jpg');
+    const bump = useLoader(TextureLoader, '/images/earth/bump.jpg');
+    const specular = useLoader(TextureLoader, '/images/earth/specular.jpg');
 
-  useFrame(() => (ref.current.rotation.y += 0.001));
-
-  return (
-    <Sphere
-      ref={ref}
-      position={position}
-      scale={[relativeScale, relativeScale, relativeScale]}
-      onClick={() => onClick('earth')}
-    >
-      <meshBasicMaterial map={base} />
-    </Sphere>
-  );
-}
+    return (
+      <Sphere
+        ref={ref}
+        position={position}
+        scale={[relativeScale, relativeScale, relativeScale]}
+        onClick={() => onClick('earth')}
+      >
+        <meshStandardMaterial
+          map={base}
+          bumpMap={bump}
+          specular={specular}
+          bumpScale={0.001}
+        />
+      </Sphere>
+    );
+  }
+);
 
 export default Earth;
