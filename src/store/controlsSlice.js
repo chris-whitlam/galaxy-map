@@ -3,7 +3,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  isPaused: false
+  isPaused: false,
+  cameraPosition: [16, 0, 0]
 };
 
 const controlsSlice = createSlice({
@@ -11,15 +12,19 @@ const controlsSlice = createSlice({
   initialState,
   reducers: {
     togglePause(state) {
-      console.log('Toggling Pause...', !state.isPaused);
-
       return {
         ...state,
         isPaused: !state.isPaused
+      };
+    },
+    setCameraPosition(state, action) {
+      return {
+        ...state,
+        cameraPosition: action.payload
       };
     }
   }
 });
 
-export const { togglePause } = controlsSlice.actions;
+export const { togglePause, setCameraPosition } = controlsSlice.actions;
 export default controlsSlice.reducer;
