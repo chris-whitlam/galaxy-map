@@ -1,0 +1,15 @@
+.slider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+}
+
+.description { 
+  font-size: 0.5em;
+}

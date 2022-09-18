@@ -4,17 +4,15 @@ import { Provider, useSelector } from 'react-redux';
 import { store } from '../store';
 
 function BaseScene({ children }) {
-  const { cameraPosition } = useSelector((state) => state.controls);
-
   return (
     <Canvas dpr={[1.5, 2]} linear shadows>
       <Provider store={store}>
         <ambientLight intensity={0.2} />
-        <OrbitControls />
-        <Stars radius={1000} depth={100} count={2000} factor={10} />
+        <OrbitControls makeDefault />
+        <Stars radius={2000} depth={100} count={2000} factor={10} />
         <PerspectiveCamera
           makeDefault
-          position={cameraPosition}
+          position={[16, 0, 0]}
           fov={75}
           far={10000}
         />

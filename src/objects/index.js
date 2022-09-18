@@ -8,5 +8,5 @@ export { default as Jupiter } from './Jupiter';
 export { default as Saturn } from './Saturn';
 export { default as Uranus } from './Uranus';
 export { default as Neptune } from './Neptune';
-export { default as Pluto } from './Pluto';
 export { default as Orbit } from './Orbit';
+export { default as OrbitLine } from './OrbitLine';

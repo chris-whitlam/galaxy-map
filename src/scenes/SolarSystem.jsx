@@ -1,50 +1,32 @@
 import { useCallback, useRef } from 'react';
-import { useFrame } from '@react-three/fiber';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Earth,
   Jupiter,
   Mars,
   Mercury,
-  Moon,
   Neptune,
-  Pluto,
   Saturn,
   Sun,
   Uranus,
   Venus,
   Orbit
 } from '../objects';
+import planetInfo from '../data/planetaryData';
 import { planetSelected, planetUnSelected } from '../store/planetSlice';
-import planetaryData from '../data/planetaryData';
-import { setCameraPosition } from '../store/controlsSlice';
-
-const positions = {
-  sun: [0, 0, 0],
-  mercury: [5, 0, 0],
-  venus: [10, 0, 0],
-  earth: [15, 0, 0],
-  mars: [20, 0, 0],
-  jupiter: [25, 0, 0],
-  saturn: [30, 0, 0],
-  uranus: [35, 0, 0],
-  neptune: [40, 0, 0],
-  pluto: [45, 0, 0]
-};
+import { getPlanetaryData } from '../hooks/usePlanets';
 
 function SolarSystem() {
+  const { planetsScale = 1, speed = 1 } = useSelector(
+    (state) => state.controls
+  );
+  const planetaryData = getPlanetaryData(100, planetsScale, speed * 0.0001);
   const dispatch = useDispatch();
   const sunRef = useRef();
   const earthRef = useRef();
 
-  const { isPaused } = useSelector((state) => state.controls);
-
   const handlePlanetClick = useCallback((planetName) => {
-    const planetData = planetaryData[planetName];
-    if (planetName === 'earth') {
-      dispatch(setCameraPosition(earthRef.current.position));
-    }
-
+    const planetData = planetInfo[planetName];
     dispatch(planetSelected(planetData));
   }, []);
 
@@ -52,90 +34,90 @@ function SolarSystem() {
     dispatch(planetUnSelected());
   }, []);
 
-  useFrame(() => {
-    if (isPaused || !earthRef.current) {
-      return;
-    }
-
-    earthRef.current.rotation.y += 0.001;
-  });
-
   return (
     <>
-      <Sun ref={sunRef} onClick={handleSunClick} />
-      <Orbit parentPosition={positions.sun}>
+      <Sun
+        ref={sunRef}
+        relativeScale={planetaryData.sun.scale}
+        onClick={handleSunClick}
+      />
+      <Orbit
+        position={planetaryData.mercury.position}
+        rotationSpeed={planetaryData.mercury.rotationSpeed}
+      >
         <Mercury
-          position={positions.mercury}
-          relativeScale={0.2}
+          relativeScale={planetaryData.mercury.scale}
           onClick={handlePlanetClick}
         />
       </Orbit>
 
-      <Orbit parentPosition={positions.sun}>
+      <Orbit
+        position={planetaryData.venus.position}
+        rotationSpeed={planetaryData.venus.rotationSpeed}
+      >
         <Venus
-          position={positions.venus}
-          relativeScale={0.2}
+          relativeScale={planetaryData.venus.scale}
           onClick={handlePlanetClick}
         />
       </Orbit>
 
-      <Orbit parentPosition={positions.sun}>
-        <>
-          <Earth
-            ref={earthRef}
-            position={positions.earth}
-            onClick={handlePlanetClick}
-          />
-          <Orbit parentPosition={positions.earth} speed={0.01}>
-            <Moon position={[2, 0, 0]} onClick={handlePlanetClick} />
-          </Orbit>
-        </>
+      <Orbit
+        position={planetaryData.earth.position}
+        rotationSpeed={planetaryData.earth.rotationSpeed}
+      >
+        <Earth
+          ref={earthRef}
+          relativeScale={planetaryData.earth.scale}
+          onClick={handlePlanetClick}
+        />
       </Orbit>
 
-      <Orbit parentPosition={positions.sun}>
+      <Orbit
+        position={planetaryData.mars.position}
+        rotationSpeed={planetaryData.mars.rotationSpeed}
+      >
         <Mars
-          position={positions.mars}
-          relativeScale={0.2}
+          relativeScale={planetaryData.mars.scale}
           onClick={handlePlanetClick}
         />
       </Orbit>
 
-      <Orbit parentPosition={positions.sun}>
+      <Orbit
+        position={planetaryData.jupiter.position}
+        rotationSpeed={planetaryData.jupiter.rotationSpeed}
+      >
         <Jupiter
-          position={positions.jupiter}
-          relativeScale={2}
+          relativeScale={planetaryData.jupiter.scale}
           onClick={handlePlanetClick}
         />
       </Orbit>
 
-      <Orbit parentPosition={positions.sun}>
+      <Orbit
+        position={planetaryData.saturn.position}
+        rotationSpeed={planetaryData.saturn.rotationSpeed}
+      >
         <Saturn
-          position={positions.saturn}
-          relativeScale={1.5}
+          relativeScale={planetaryData.saturn.scale}
           onClick={handlePlanetClick}
         />
       </Orbit>
 
-      <Orbit parentPosition={positions.sun}>
+      <Orbit
+        position={planetaryData.uranus.position}
+        rotationSpeed={planetaryData.uranus.rotationSpeed}
+      >
         <Uranus
-          position={positions.uranus}
-          relativeScale={0.5}
+          relativeScale={planetaryData.uranus.scale}
           onClick={handlePlanetClick}
         />
       </Orbit>
 
-      <Orbit parentPosition={positions.sun}>
+      <Orbit
+        position={planetaryData.neptune.position}
+        rotationSpeed={planetaryData.neptune.rotationSpeed}
+      >
         <Neptune
-          position={positions.neptune}
-          relativeScale={0.5}
-          onClick={handlePlanetClick}
-        />
-      </Orbit>
-
-      <Orbit parentPosition={positions.sun}>
-        <Pluto
-          position={positions.pluto}
-          relativeScale={0.5}
+          relativeScale={planetaryData.neptune.scale}
           onClick={handlePlanetClick}
         />
       </Orbit>

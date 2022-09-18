@@ -1,12 +1,13 @@
 import './App.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { SolarSystem, Earth } from './scenes';
+import { SolarSystem, Earth, EarthAndMoon } from './scenes';
 import { Inspector, Toolbar, Footer } from './ui';
 import BaseScene from './scenes/BaseScene';
 
 const SCENE_MAP = {
   solarSystem: SolarSystem,
-  earth: Earth
+  earth: Earth,
+  earthAndMoon: EarthAndMoon
 };
 
 function App() {

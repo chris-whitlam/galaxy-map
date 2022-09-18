@@ -3,7 +3,7 @@ import { Earth } from '../objects';
 import { planetSelected } from '../store/planetSlice';
 import planetaryData from '../data/planetaryData';
 
-function SolarSystem({ dispatch }) {
+function EarthScene({ dispatch }) {
   const handlePlanetClick = useCallback((planetName) => {
     const planetData = planetaryData[planetName];
     dispatch(planetSelected(planetData));
@@ -12,4 +12,4 @@ function SolarSystem({ dispatch }) {
   return <Earth onClick={handlePlanetClick} />;
 }
 
-export default SolarSystem;
+export default EarthScene;

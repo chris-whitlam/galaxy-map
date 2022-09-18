@@ -6,6 +6,10 @@ const scenes = {
   earth: {
     reference: 'earth',
     label: 'Earth'
+  },
+  earthAndMoon: {
+    reference: 'earthAndMoon',
+    label: 'Earth & Moon'
   }
 };
 

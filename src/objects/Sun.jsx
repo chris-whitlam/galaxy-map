@@ -13,7 +13,7 @@ const Sun = React.forwardRef(
         position={position}
         scale={[relativeScale, relativeScale, relativeScale]}
       >
-        <pointLight color="white" intensity={2} distance={300} castShadow />
+        <pointLight color="white" intensity={2} distance={3000} castShadow />
         <meshLambertMaterial map={base} emissive="peru" />
       </Sphere>
     );

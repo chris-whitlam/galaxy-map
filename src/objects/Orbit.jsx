@@ -1,23 +1,34 @@
 import { useRef } from 'react';
 import { useSelector } from 'react-redux';
-import { Box } from '@react-three/drei';
-import { useFrame } from '@react-three/fiber';
+import { Euler, MathUtils } from 'three';
+import OrbitLine from './OrbitLine';
+import { useUpdate } from '../hooks';
 
-function Orbit({ speed = 0.0005, parentPosition, children }) {
+function Orbit({
+  rotationSpeed = 0.0005,
+  position,
+  parentPosition = [0, 0, 0],
+  orientation = new Euler(MathUtils.degToRad(0), 0, 0),
+  children
+}) {
   const ref = useRef();
-  const { isPaused } = useSelector((state) => state.controls);
+  const { showOrbitLines } = useSelector((state) => state.controls);
 
-  useFrame(() => {
-    if (isPaused) {
+  useUpdate(() => {
+    if (!ref.current) {
       return;
     }
-    ref.current.rotation.y += speed;
+
+    ref.current.rotation.y += rotationSpeed / (position[0] * 0.01);
   });
 
   return (
-    <Box ref={ref} position={parentPosition} scale={1}>
-      {children}
-    </Box>
+    <mesh rotation={orientation}>
+      {showOrbitLines && <OrbitLine rx={position[0]} ry={position[0]} />}
+      <mesh ref={ref} position={parentPosition} scale={1}>
+        <mesh position={position}>{children}</mesh>
+      </mesh>
+    </mesh>
   );
 }
 

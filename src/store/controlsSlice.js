@@ -4,7 +4,9 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   isPaused: false,
-  cameraPosition: [16, 0, 0]
+  showOrbitLines: true,
+  planetsScale: 100,
+  speed: 5
 };
 
 const controlsSlice = createSlice({
@@ -17,14 +19,27 @@ const controlsSlice = createSlice({
         isPaused: !state.isPaused
       };
     },
-    setCameraPosition(state, action) {
+    toggleOrbitLines(state) {
       return {
         ...state,
-        cameraPosition: action.payload
+        showOrbitLines: !state.showOrbitLines
+      };
+    },
+    setPlanetsScale(state, action) {
+      return {
+        ...state,
+        planetsScale: action.payload
+      };
+    },
+    setSpeed(state, action) {
+      return {
+        ...state,
+        speed: action.payload
       };
     }
   }
 });
 
-export const { togglePause, setCameraPosition } = controlsSlice.actions;
+export const { togglePause, toggleOrbitLines, setPlanetsScale, setSpeed } =
+  controlsSlice.actions;
 export default controlsSlice.reducer;
