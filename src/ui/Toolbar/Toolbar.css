@@ -1,13 +1,15 @@
+* { box-sizing: border-box }
+
 .toolbar {
-  position: relative;
+  position: absolute;
+  display: flex;
   background-color: peru;
   width: 100vw;
   height: 2vh;
-  padding: 10px 15px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  padding: 20px 15px;
   z-index: 10;
+  align-items: center;
+  justify-content: space-between;
 }
 
 button {
@@ -21,7 +23,4 @@ label {
 
 .section {
   display: flex;
-  flex-direction: row;
-  width: 50%;
-  gap: 10px;
 }

@@ -6,7 +6,10 @@ import { Sphere } from '@react-three/drei';
 import { useUpdate } from '../hooks';
 
 const Earth = React.forwardRef(
-  ({ position, relativeScale = 1, onClick }, ref = useRef()) => {
+  (
+    { position, relativeScale = 1, onClick, rotationSpeed = 1 },
+    ref = useRef()
+  ) => {
     const base = useLoader(TextureLoader, '/images/earth/base.jpg');
     const bump = useLoader(TextureLoader, '/images/earth/bump.jpg');
     const specular = useLoader(TextureLoader, '/images/earth/specular.jpg');
@@ -16,7 +19,7 @@ const Earth = React.forwardRef(
         return;
       }
 
-      ref.current.rotation.y += 0.001;
+      ref.current.rotation.y += rotationSpeed * 0.001;
       ref.current.rotation.x = MathUtils.degToRad(-23.5);
     });
 

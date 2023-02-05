@@ -1,9 +1,9 @@
 import './Footer.css';
 
-function Footer() {
+function Footer({ children }) {
   return (
     <footer>
-      <span>Created by Chris Whitlam</span>
+      <span>{children || 'Created by Chris Whitlam'}</span>
     </footer>
   );
 }

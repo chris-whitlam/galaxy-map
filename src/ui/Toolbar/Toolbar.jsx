@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaPause, FaPlay } from 'react-icons/fa';
 import Dropdown from '../Dropdown/Dropdown';
@@ -7,20 +6,29 @@ import { changeScene } from '../../store/sceneSlice';
 import {
   toggleOrbitLines as toggleOrbitLinesAction,
   togglePause as togglePauseAction,
+  toggleInterface as toggleInterfaceAction,
   setPlanetsScale,
-  setSpeed
+  setSpeed,
+  reset
 } from '../../store/controlsSlice';
 import './Toolbar.css';
 import scenes from '../../data/scenes';
 import Slider from '../Slider/Slider';
+import Button from '../Button/Button';
+import {
+  MAX_PLANET_SCALE,
+  MAX_SPEED,
+  MIN_PLANET_SCALE,
+  MIN_SPEED
+} from '../constants';
 
 function Toolbar() {
   const dispatch = useDispatch();
-  const [planetScale, setPlanetScale] = useState(100);
-  const [speed, setOrbitSpeed] = useState(5);
-  const { isPaused, showOrbitLines } = useSelector((state) => state.controls);
+  const { isPaused, showOrbitLines, showInterface, speed, planetsScale } =
+    useSelector((state) => state.controls);
 
   const handleSceneChange = (sceneName) => {
+    dispatch(reset());
     dispatch(changeScene(sceneName));
   };
 
@@ -32,14 +40,20 @@ function Toolbar() {
     dispatch(toggleOrbitLinesAction());
   };
 
+  const toggleInterface = () => {
+    dispatch(toggleInterfaceAction());
+  };
+
   const handlePlanetSize = (e) => {
-    setPlanetScale(e.target.value);
-    dispatch(setPlanetsScale(e.target.value));
+    dispatch(setPlanetsScale(+e.target.value));
   };
 
   const handleSpeed = (e) => {
-    setOrbitSpeed(e.target.value);
-    dispatch(setSpeed(e.target.value));
+    dispatch(setSpeed(+e.target.value));
+  };
+
+  const resetSettings = () => {
+    dispatch(reset());
   };
 
   return (
@@ -47,14 +61,41 @@ function Toolbar() {
       <div className="section">
         <Dropdown name="Scenes">
           {Object.values(scenes).map((scene) => (
-            <button
+            <Button
               key={scene.reference}
-              type="button"
               onClick={() => handleSceneChange(scene.reference)}
             >
               {scene.label}
-            </button>
+            </Button>
           ))}
+        </Dropdown>
+        <Dropdown name="Controls">
+          <Slider
+            name="Planet Scale"
+            description="Scales Sun un-proportionally"
+            max={MAX_PLANET_SCALE}
+            value={planetsScale}
+            min={MIN_PLANET_SCALE}
+            onChange={handlePlanetSize}
+          >
+            Scale of planets
+          </Slider>
+          <Slider
+            name="Speed"
+            max={MAX_SPEED}
+            value={speed}
+            min={MIN_SPEED}
+            onChange={handleSpeed}
+          >
+            Speed
+          </Slider>
+          <button
+            style={{ width: '100%' }}
+            type="button"
+            onClick={resetSettings}
+          >
+            Reset all
+          </button>
         </Dropdown>
         <Dropdown name="Interface">
           <Checkbox
@@ -64,31 +105,13 @@ function Toolbar() {
           >
             Show Orbits
           </Checkbox>
-          <Checkbox name="hideInterface">Hide Interface</Checkbox>
-        </Dropdown>
-        <Dropdown name="Camera">
-          <button type="button">Center Camera</button>
-        </Dropdown>
-        <Dropdown name="Controls">
-          <Slider
-            name="Planet Scale"
-            description="Scales Sun un-proportionally"
-            max={600}
-            value={planetScale}
-            min={20}
-            onChange={handlePlanetSize}
+          <Checkbox
+            name="showInterface"
+            onChange={toggleInterface}
+            checked={showInterface}
           >
-            Scale of planets
-          </Slider>
-          <Slider
-            name="Speed"
-            max={1000}
-            value={speed}
-            min={1}
-            onChange={handleSpeed}
-          >
-            Speed
-          </Slider>
+            Show Interface
+          </Checkbox>
         </Dropdown>
       </div>
       <div className="section">

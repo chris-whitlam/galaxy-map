@@ -1,6 +1,8 @@
+import './Checkbox.css';
+
 function Checkbox({ name, checked = false, onChange = () => {}, children }) {
   return (
-    <div>
+    <div className="checkbox-container">
       <input
         type="checkbox"
         checked={checked}

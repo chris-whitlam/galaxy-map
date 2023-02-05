@@ -1,15 +1,17 @@
 const scenes = {
   solarSystem: {
     reference: 'solarSystem',
-    label: 'Solar System'
-  },
-  earth: {
-    reference: 'earth',
-    label: 'Earth'
+    label: 'Solar System',
+    camera: {
+      position: [200, 0, 0]
+    }
   },
   earthAndMoon: {
     reference: 'earthAndMoon',
-    label: 'Earth & Moon'
+    label: 'Earth & Moon',
+    camera: {
+      position: [50, 0, 0]
+    }
   }
 };
 

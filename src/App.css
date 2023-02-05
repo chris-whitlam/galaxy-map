@@ -3,3 +3,16 @@
   width: 100vw;
   height: 100vh;
 }
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 2s 2s ease;
+}
+
+.fade-in {
+  transition: opacity 1s ease;
+}
+
+.visible {
+  opacity: 1;
+}

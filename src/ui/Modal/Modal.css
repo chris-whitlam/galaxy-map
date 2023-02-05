@@ -1,0 +1,57 @@
+.open {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100; 
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh; 
+  overflow: auto; 
+  background-color: rgba(0,0,0,.8);
+  padding-top: 50px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color:peru;
+  border: 1px solid #888;
+  border-radius: 16px;
+  width: clamp(50px, 85%, 600px); 
+  padding: 16px 16px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* The Modal Close Button (x) */
+.close {
+  position: relative;
+  right: 0px;
+  top: 0;
+  font-size: 40px;
+  font-weight: bold;
+  color: #f1f1f1;
+  line-height: 0;
+}
+
+.close:hover,
+.close:focus {
+  color: #f44336;
+  cursor: pointer;
+}
+
+/* Add padding and center-align text to the container */
+.modal-body {
+  padding: 24px;
+  text-align: center;
+}

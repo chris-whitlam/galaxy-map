@@ -4,7 +4,10 @@
 
 .dropdown:hover {
   background-color: gray;
+}
 
+.dropdown:hover .dropdown-btn {
+  color: peru;
 }
 
 .dropdown-options {

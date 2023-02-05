@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-const LOCAL_STORAGE_STATE_KEY = 'solarSystemApplicationState';
+const LOCAL_STORAGE_STATE_KEY = 'ssm/solarSystemApplicationState';
 
 export const localStorageMiddleware = ({ getState }) => {
   return (next) => (action) => {
