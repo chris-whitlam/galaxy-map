@@ -8,9 +8,9 @@ import {
   decrementPlanetScale,
   incrementSpeed,
   decrementSpeed
-} from '../../store/controlsSlice';
+} from '../../../store/controlsSlice';
 
-export function KeyboardControls({ children }) {
+function KeyboardControls({ children }) {
   const dispatch = useDispatch();
   let incrementSpeedInterval;
   let decrementSpeedInterval;
@@ -88,3 +88,5 @@ export function KeyboardControls({ children }) {
 
   return children;
 }
+
+export default KeyboardControls;

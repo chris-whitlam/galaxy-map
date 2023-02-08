@@ -3,12 +3,17 @@ import './App.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect, useCallback } from 'react';
 import { SolarSystem, EarthAndMoon } from './scenes';
-import { Inspector, Toolbar, Footer, Modal } from './ui';
+import {
+  Inspector,
+  Toolbar,
+  Footer,
+  Modal,
+  KeyboardControls
+} from './ui/components';
 import BaseScene from './scenes/BaseScene';
 
 import { toggleInterface as toggleInterfaceAction } from './store/controlsSlice';
 
-import { KeyboardControls } from './ui/KeyboardControls/KeyboardControls';
 import { useLocalStorage } from './hooks';
 
 const SCENE_MAP = {

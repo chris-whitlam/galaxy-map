@@ -1,12 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { ImCheckboxUnchecked, ImCheckboxChecked } from 'react-icons/im';
+import { useLoseFocus } from '../../hooks';
 
 import Panel from '../Panel/Panel';
 import './Inspector.css';
 
 function Inspector() {
   const [isShown, setIsShown] = useState(true);
+  const ref = useRef(null);
+
+  const onLoseFocus = () => {
+    setIsShown(false);
+  };
+
+  useLoseFocus(ref, onLoseFocus);
 
   const {
     name,
@@ -44,6 +52,7 @@ function Inspector() {
 
   return (
     <Panel
+      ref={ref}
       heading={name.toUpperCase()}
       isShown={isShown}
       onToggle={() => {

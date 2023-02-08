@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FaPause, FaPlay } from 'react-icons/fa';
 import Dropdown from '../Dropdown/Dropdown';
 import Checkbox from '../Checkbox/Checkbox';
-import { changeScene } from '../../store/sceneSlice';
+import { changeScene } from '../../../store/sceneSlice';
 import {
   toggleOrbitLines as toggleOrbitLinesAction,
   togglePause as togglePauseAction,
@@ -10,9 +10,9 @@ import {
   setPlanetsScale,
   setSpeed,
   reset
-} from '../../store/controlsSlice';
+} from '../../../store/controlsSlice';
 import './Toolbar.css';
-import scenes from '../../data/scenes';
+import scenes from '../../../data/scenes';
 import Slider from '../Slider/Slider';
 import Button from '../Button/Button';
 import {
@@ -20,10 +20,11 @@ import {
   MAX_SPEED,
   MIN_PLANET_SCALE,
   MIN_SPEED
-} from '../constants';
+} from '../../constants';
 
 function Toolbar() {
   const dispatch = useDispatch();
+
   const { isPaused, showOrbitLines, showInterface, speed, planetsScale } =
     useSelector((state) => state.controls);
 
