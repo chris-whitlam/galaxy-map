@@ -2,13 +2,8 @@ import React from 'react';
 
 import { EllipseCurve, Euler, MathUtils } from 'three';
 
-import { Line2 } from 'three/examples/jsm/lines/Line2';
 import { LineMaterial } from 'three/examples/jsm/lines/LineMaterial';
 import { LineGeometry } from 'three/examples/jsm/lines/LineGeometry';
-
-import { extend } from '@react-three/fiber';
-
-extend({ Line2 });
 
 function OrbitLine({
   color = 'white',

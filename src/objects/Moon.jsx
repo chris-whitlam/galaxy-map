@@ -1,15 +1,11 @@
 /* eslint-disable no-param-reassign */
 import React from 'react';
-import { TextureLoader, MathUtils } from 'three';
-import { useLoader } from '@react-three/fiber';
-import { Sphere } from '@react-three/drei';
+import { MathUtils } from 'three';
 import { useUpdate } from '../hooks';
+import SimpleOrbitingBody from './SimpleOrbitingBody';
 
 const Moon = React.forwardRef(
   ({ position, relativeScale = 0.27, onClick }, ref) => {
-    const base = useLoader(TextureLoader, '/images/moon/base.jpg');
-    const bump = useLoader(TextureLoader, '/images/moon/bump.jpg');
-
     useUpdate(() => {
       if (!ref.current) {
         return;
@@ -20,14 +16,15 @@ const Moon = React.forwardRef(
     });
 
     return (
-      <Sphere
+      <SimpleOrbitingBody
         ref={ref}
-        onClick={() => onClick('moon')}
+        onClick={onClick}
+        name="moon"
+        label="Moon"
         position={position}
-        scale={[relativeScale, relativeScale, relativeScale]}
-      >
-        <meshStandardMaterial map={base} bumpMap={bump} bumpScale={0.002} />
-      </Sphere>
+        relativeScale={relativeScale}
+        bumpScale={0.002}
+      />
     );
   }
 );

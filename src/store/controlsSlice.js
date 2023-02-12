@@ -14,6 +14,7 @@ const initialState = {
   isPaused: false,
   showOrbitLines: true,
   showInterface: true,
+  showLabels: true,
   planetsScale: 100,
   speed: 5
 };
@@ -38,6 +39,12 @@ const controlsSlice = createSlice({
       return {
         ...state,
         showInterface: !state.showInterface
+      };
+    },
+    toggleLabels(state) {
+      return {
+        ...state,
+        showLabels: !state.showLabels
       };
     },
     setPlanetsScale(state, action) {
@@ -114,6 +121,7 @@ export const {
   togglePause,
   toggleOrbitLines,
   toggleInterface,
+  toggleLabels,
   setPlanetsScale,
   incrementPlanetScale,
   decrementPlanetScale,

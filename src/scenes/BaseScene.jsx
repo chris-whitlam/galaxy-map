@@ -1,8 +1,10 @@
-import { Canvas, useThree } from '@react-three/fiber';
+import { useThree } from '@react-three/fiber';
 import { OrbitControls, PerspectiveCamera, Stars } from '@react-three/drei';
-import { Provider } from 'react-redux';
-import { useEffect } from 'react';
-import { store } from '../store';
+import { useEffect, useMemo } from 'react';
+import { useSelector } from 'react-redux';
+import { Vector3 } from 'three';
+import { useUpdate } from '../hooks';
+import { useOrbitControls } from '../providers';
 
 const deg2rad = (degrees) => degrees * (Math.PI / 180);
 
@@ -14,24 +16,47 @@ function CameraUpdater({ camera: { position = [200, 0, 0] } = {} }) {
   }, [position, cameraPosition]);
 }
 
+function CameraOrbit() {
+  const { targetPosition, setTargetPosition } = useOrbitControls();
+  const scene = useThree((context) => context.scene);
+  const selectedPlanet = useSelector((state) => state.planet);
+  const selectedPlanetObject = useMemo(
+    () => scene.getObjectByName(selectedPlanet.name),
+    [selectedPlanet.name]
+  );
+
+  useUpdate(() => {
+    if (!selectedPlanetObject) return;
+    const target = new Vector3();
+    selectedPlanetObject.getWorldPosition(target);
+    setTargetPosition(target);
+  });
+
+  return (
+    <OrbitControls
+      makeDefault
+      maxPolarAngle={deg2rad(80)}
+      target={targetPosition}
+    />
+  );
+}
+
 function BaseScene({ children, camera }) {
   return (
-    <Canvas dpr={[1.5, 2]} linear shadows>
+    <>
       <CameraUpdater camera={camera} />
-      <Provider store={store}>
-        <ambientLight intensity={0.2} />
-        <OrbitControls makeDefault maxPolarAngle={deg2rad(80)} />
-        <Stars radius={2000} depth={100} count={2000} factor={10} />
-        <PerspectiveCamera
-          makeDefault
-          position={[200, 0, 0]}
-          rotation={[0, 0, 0]}
-          fov={75}
-          far={10000}
-        />
-        {children}
-      </Provider>
-    </Canvas>
+      <ambientLight intensity={0.2} />
+      <CameraOrbit />
+      <Stars radius={2000} depth={100} count={2000} factor={10} />
+      <PerspectiveCamera
+        makeDefault
+        position={[200, 0, 0]}
+        rotation={[0, 0, 0]}
+        fov={75}
+        far={10000}
+      />
+      {children}
+    </>
   );
 }
 

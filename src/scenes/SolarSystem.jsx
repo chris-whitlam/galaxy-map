@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'react';
+import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Earth,
@@ -20,10 +20,9 @@ function SolarSystem() {
   const { planetsScale = 1, speed = 1 } = useSelector(
     (state) => state.controls
   );
+
   const planetaryData = getPlanetaryData(100, planetsScale, speed * 0.0001);
   const dispatch = useDispatch();
-  const sunRef = useRef();
-  const earthRef = useRef();
 
   const handlePlanetClick = useCallback((planetName) => {
     const planetData = planetInfo[planetName];
@@ -36,11 +35,7 @@ function SolarSystem() {
 
   return (
     <>
-      <Sun
-        ref={sunRef}
-        relativeScale={planetaryData.sun.scale}
-        onClick={handleSunClick}
-      />
+      <Sun relativeScale={planetaryData.sun.scale} onClick={handleSunClick} />
       <Orbit
         position={planetaryData.mercury.position}
         rotationSpeed={planetaryData.mercury.rotationSpeed}
@@ -66,7 +61,6 @@ function SolarSystem() {
         rotationSpeed={planetaryData.earth.rotationSpeed}
       >
         <Earth
-          ref={earthRef}
           relativeScale={planetaryData.earth.scale}
           onClick={handlePlanetClick}
         />

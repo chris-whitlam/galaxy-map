@@ -1,31 +1,23 @@
 import React from 'react';
 import { TextureLoader, MathUtils, Euler } from 'three';
 import { useLoader } from '@react-three/fiber';
-import { Sphere, Ring } from '@react-three/drei';
-import Text from './Text';
+import { Ring } from '@react-three/drei';
+import SimpleOrbitingBody from './SimpleOrbitingBody';
 
 const Uranus = React.forwardRef(
   ({ position, relativeScale = 1, onClick }, ref) => {
-    const base = useLoader(TextureLoader, '/images/uranus/base.jpg');
     const ringBase = useLoader(TextureLoader, '/images/uranus/ring_base.jpg');
 
     return (
       <>
-        <Text
-          position={[0, relativeScale + 15, 0]}
-          size={10}
-          rotation={[10, 10, 10]}
-        >
-          Uranus
-        </Text>
-        <Sphere
+        <SimpleOrbitingBody
           ref={ref}
+          onClick={onClick}
+          name="uranus"
+          label="Uranus"
           position={position}
-          scale={[relativeScale, relativeScale, relativeScale]}
-          onClick={() => onClick('uranus')}
-        >
-          <meshStandardMaterial map={base} />
-        </Sphere>
+          relativeScale={relativeScale}
+        />
         <Ring
           args={[0.6, 1, 30]}
           position={position}

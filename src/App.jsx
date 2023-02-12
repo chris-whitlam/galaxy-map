@@ -2,7 +2,7 @@ import './App.css';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect, useCallback } from 'react';
-import { SolarSystem, EarthAndMoon } from './scenes';
+import { Canvas } from './Canvas';
 import {
   Inspector,
   Toolbar,
@@ -10,16 +10,10 @@ import {
   Modal,
   KeyboardControls
 } from './ui/components';
-import BaseScene from './scenes/BaseScene';
 
 import { toggleInterface as toggleInterfaceAction } from './store/controlsSlice';
 
 import { useLocalStorage } from './hooks';
-
-const SCENE_MAP = {
-  solarSystem: SolarSystem,
-  earthAndMoon: EarthAndMoon
-};
 
 const SEEN_WARNING_LOCAL_STORAGE_KEY = 'seenWarning';
 
@@ -30,8 +24,6 @@ function App() {
   const hasSeenWarning = getValue(SEEN_WARNING_LOCAL_STORAGE_KEY);
   const [showModal, setShowModal] = useState(!hasSeenWarning);
   const state = useSelector((rootState) => rootState);
-
-  const Scene = SCENE_MAP[state.scene.reference];
 
   useEffect(() => {
     setFade('visible');
@@ -81,9 +73,7 @@ function App() {
           )}
         </KeyboardControls>
       </div>
-      <BaseScene camera={state.scene.camera}>
-        <Scene dispatch={dispatch} state={state} />
-      </BaseScene>
+      <Canvas scene={state.scene} />
     </>
   );
 }

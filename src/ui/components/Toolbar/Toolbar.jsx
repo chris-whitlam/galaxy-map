@@ -7,6 +7,7 @@ import {
   toggleOrbitLines as toggleOrbitLinesAction,
   togglePause as togglePauseAction,
   toggleInterface as toggleInterfaceAction,
+  toggleLabels as toggleLabelsAction,
   setPlanetsScale,
   setSpeed,
   reset
@@ -25,8 +26,14 @@ import {
 function Toolbar() {
   const dispatch = useDispatch();
 
-  const { isPaused, showOrbitLines, showInterface, speed, planetsScale } =
-    useSelector((state) => state.controls);
+  const {
+    isPaused,
+    showOrbitLines,
+    showInterface,
+    speed,
+    planetsScale,
+    showLabels
+  } = useSelector((state) => state.controls);
 
   const handleSceneChange = (sceneName) => {
     dispatch(reset());
@@ -43,6 +50,10 @@ function Toolbar() {
 
   const toggleInterface = () => {
     dispatch(toggleInterfaceAction());
+  };
+
+  const toggleLabels = () => {
+    dispatch(toggleLabelsAction());
   };
 
   const handlePlanetSize = (e) => {
@@ -105,6 +116,13 @@ function Toolbar() {
             checked={showOrbitLines}
           >
             Show Orbits
+          </Checkbox>
+          <Checkbox
+            name="showLabels"
+            onChange={toggleLabels}
+            checked={showLabels}
+          >
+            Show Labels
           </Checkbox>
           <Checkbox
             name="showInterface"
