@@ -10,3 +10,4 @@ export { default as Uranus } from './Uranus';
 export { default as Neptune } from './Neptune';
 export { default as Orbit } from './Orbit';
 export { default as OrbitLine } from './OrbitLine';
+export { default as Text } from './Text';

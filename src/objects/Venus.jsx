@@ -2,6 +2,7 @@ import React from 'react';
 import { TextureLoader } from 'three';
 import { useLoader } from '@react-three/fiber';
 import { Sphere } from '@react-three/drei';
+import Text from './Text';
 
 const Venus = React.forwardRef(
   ({ position, relativeScale = 1, onClick }, ref) => {
@@ -9,14 +10,23 @@ const Venus = React.forwardRef(
     const bump = useLoader(TextureLoader, '/images/venus/bump.jpg');
 
     return (
-      <Sphere
-        ref={ref}
-        position={position}
-        scale={[relativeScale, relativeScale, relativeScale]}
-        onClick={() => onClick('venus')}
-      >
-        <meshStandardMaterial map={base} bumpMap={bump} bumpScale={0.001} />
-      </Sphere>
+      <>
+        <Text
+          position={[0, relativeScale + 12, 0]}
+          size={10}
+          rotation={[10, 10, 10]}
+        >
+          Venus
+        </Text>
+        <Sphere
+          ref={ref}
+          position={position}
+          scale={[relativeScale, relativeScale, relativeScale]}
+          onClick={() => onClick('venus')}
+        >
+          <meshStandardMaterial map={base} bumpMap={bump} bumpScale={0.001} />
+        </Sphere>
+      </>
     );
   }
 );

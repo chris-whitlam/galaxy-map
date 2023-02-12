@@ -2,6 +2,7 @@ import React from 'react';
 import { TextureLoader, MathUtils, Euler } from 'three';
 import { useLoader } from '@react-three/fiber';
 import { Sphere, Ring } from '@react-three/drei';
+import Text from './Text';
 
 const Uranus = React.forwardRef(
   ({ position, relativeScale = 1, onClick }, ref) => {
@@ -10,6 +11,13 @@ const Uranus = React.forwardRef(
 
     return (
       <>
+        <Text
+          position={[0, relativeScale + 15, 0]}
+          size={10}
+          rotation={[10, 10, 10]}
+        >
+          Uranus
+        </Text>
         <Sphere
           ref={ref}
           position={position}
