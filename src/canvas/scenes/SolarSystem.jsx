@@ -13,7 +13,10 @@ import {
   Orbit
 } from '../objects';
 import planetInfo from '../data/planetaryData';
-import { planetSelected, planetUnSelected } from '../store/planetSlice';
+import {
+  planetSelected,
+  planetUnSelected
+} from '../../shared/store/planetSlice';
 import { getPlanetaryData } from '../hooks/usePlanets';
 
 function SolarSystem() {

@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
-import scenes from '../data/scenes';
+import { scenes } from '../data';
 
 const sceneSlice = createSlice({
   name: 'scene',

@@ -8,7 +8,7 @@ import {
   MAX_SPEED,
   MIN_SPEED,
   SPEED_INCREMENT
-} from '../ui/constants';
+} from '../../ui/constants';
 
 const initialState = {
   isPaused: false,

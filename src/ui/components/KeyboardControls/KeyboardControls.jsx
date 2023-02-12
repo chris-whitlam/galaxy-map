@@ -8,7 +8,7 @@ import {
   decrementPlanetScale,
   incrementSpeed,
   decrementSpeed
-} from '../../../store/controlsSlice';
+} from '../../../shared/store/controlsSlice';
 
 function KeyboardControls({ children }) {
   const dispatch = useDispatch();

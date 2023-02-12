@@ -6,7 +6,7 @@ import { Provider as ReduxProvider } from 'react-redux';
 import BaseScene from './scenes/BaseScene';
 import { OrbitControlsProvider } from './providers';
 import { SolarSystem, EarthAndMoon } from './scenes';
-import { store } from './store';
+import { store } from '../shared/store';
 
 const SCENE_MAP = {
   solarSystem: SolarSystem,

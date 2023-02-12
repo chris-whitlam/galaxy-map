@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FaPause, FaPlay } from 'react-icons/fa';
 import Dropdown from '../Dropdown/Dropdown';
 import Checkbox from '../Checkbox/Checkbox';
-import { changeScene } from '../../../store/sceneSlice';
+import { changeScene } from '../../../shared/store/sceneSlice';
 import {
   toggleOrbitLines as toggleOrbitLinesAction,
   togglePause as togglePauseAction,
@@ -11,9 +11,9 @@ import {
   setPlanetsScale,
   setSpeed,
   reset
-} from '../../../store/controlsSlice';
+} from '../../../shared/store/controlsSlice';
 import './Toolbar.css';
-import scenes from '../../../data/scenes';
+import scenes from '../../../shared/data/scenes';
 import Slider from '../Slider/Slider';
 import Button from '../Button/Button';
 import {

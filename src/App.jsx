@@ -2,7 +2,7 @@ import './App.css';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect, useCallback } from 'react';
-import { Canvas } from './Canvas';
+import { Canvas } from './canvas/Canvas';
 import {
   Inspector,
   Toolbar,
@@ -11,9 +11,9 @@ import {
   KeyboardControls
 } from './ui/components';
 
-import { toggleInterface as toggleInterfaceAction } from './store/controlsSlice';
+import { toggleInterface as toggleInterfaceAction } from './shared/store/controlsSlice';
 
-import { useLocalStorage } from './hooks';
+import { useLocalStorage } from './shared/hooks';
 
 const SEEN_WARNING_LOCAL_STORAGE_KEY = 'seenWarning';
 

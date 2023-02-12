@@ -2,7 +2,7 @@ import { useCallback, useRef } from 'react';
 import { Euler, MathUtils } from 'three';
 import { useSelector } from 'react-redux';
 import { Earth, Orbit, Moon } from '../objects';
-import { planetSelected } from '../store/planetSlice';
+import { planetSelected } from '../../shared/store/planetSlice';
 import planetaryData from '../data/planetaryData';
 import { RELATIVE_SCALE, MOON_TO_EARTH_DISTANCE } from '../data/constants';
 
