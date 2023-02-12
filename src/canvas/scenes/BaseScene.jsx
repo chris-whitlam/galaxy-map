@@ -21,8 +21,8 @@ function CameraOrbit() {
   const scene = useThree((context) => context.scene);
   const selectedPlanet = useSelector((state) => state.planet);
   const selectedPlanetObject = useMemo(
-    () => scene.getObjectByName(selectedPlanet.name),
-    [selectedPlanet.name]
+    () => scene.getObjectByName(selectedPlanet),
+    [selectedPlanet]
   );
 
   useUpdate(() => {

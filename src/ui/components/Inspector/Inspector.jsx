@@ -5,6 +5,7 @@ import { useLoseFocus } from '../../hooks';
 
 import Panel from '../Panel/Panel';
 import './Inspector.css';
+import { planetaryData } from '../../../canvas/data';
 
 function Inspector() {
   const [isShown, setIsShown] = useState(true);
@@ -15,6 +16,8 @@ function Inspector() {
   };
 
   useLoseFocus(ref, onLoseFocus);
+
+  const planetName = useSelector((state) => state.planet);
 
   const {
     name,
@@ -38,7 +41,7 @@ function Inspector() {
     moons,
     hasRingSystem,
     hasGlobalMagneticField
-  } = useSelector((state) => state.planet);
+  } = planetaryData[planetName] || {};
 
   useEffect(() => {
     if (name) {

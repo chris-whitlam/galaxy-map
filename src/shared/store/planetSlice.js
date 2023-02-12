@@ -7,13 +7,10 @@ const planetSlice = createSlice({
   initialState: {},
   reducers: {
     planetSelected(state, action) {
-      return {
-        ...state,
-        ...action.payload
-      };
+      return action.payload;
     },
     planetUnSelected(state, action) {
-      return {};
+      return '';
     }
   }
 });

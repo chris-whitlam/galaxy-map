@@ -12,7 +12,6 @@ import {
   Venus,
   Orbit
 } from '../objects';
-import planetInfo from '../data/planetaryData';
 import {
   planetSelected,
   planetUnSelected
@@ -28,8 +27,7 @@ function SolarSystem() {
   const dispatch = useDispatch();
 
   const handlePlanetClick = useCallback((planetName) => {
-    const planetData = planetInfo[planetName];
-    dispatch(planetSelected(planetData));
+    dispatch(planetSelected(planetName));
   }, []);
 
   const handleSunClick = useCallback(() => {

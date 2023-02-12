@@ -3,7 +3,6 @@ import { Euler, MathUtils } from 'three';
 import { useSelector } from 'react-redux';
 import { Earth, Orbit, Moon } from '../objects';
 import { planetSelected } from '../../shared/store/planetSlice';
-import planetaryData from '../data/planetaryData';
 import { RELATIVE_SCALE, MOON_TO_EARTH_DISTANCE } from '../data/constants';
 
 function EarthAndMoonScene({ dispatch }) {
@@ -15,8 +14,7 @@ function EarthAndMoonScene({ dispatch }) {
   );
 
   const handlePlanetClick = useCallback((planetName) => {
-    const planetData = planetaryData[planetName];
-    dispatch(planetSelected(planetData));
+    dispatch(planetSelected(planetName));
   }, []);
 
   return (
