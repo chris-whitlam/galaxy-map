@@ -6,7 +6,10 @@ import { useUpdate } from '../hooks';
 import SimpleOrbitingBody from './SimpleOrbitingBody';
 
 const Earth = React.forwardRef(
-  ({ position, relativeScale = 1, onClick, rotationSpeed = 1 }, passedRef) => {
+  (
+    { position, onClick, textStyle, rotationSpeed = 1, relativeScale = 1 },
+    passedRef
+  ) => {
     const localRef = useRef(null);
     const ref = passedRef || localRef;
 
@@ -27,6 +30,7 @@ const Earth = React.forwardRef(
         label="Earth"
         position={position}
         relativeScale={relativeScale}
+        textStyle={textStyle}
       />
     );
   }

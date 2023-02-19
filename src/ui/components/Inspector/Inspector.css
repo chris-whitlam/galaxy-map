@@ -1,7 +1,7 @@
 .inspector {
-  top: 3vh;
+  top: 10vh;
   right: 0;
-  border-radius: 0 0 0 20px;
+  border-radius: 20px 0 0 20px;
 }
 
 .stats-container {

@@ -1,12 +1,26 @@
 import './PlanetPicker.css';
 
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { planetSelected } from '../../../shared/store/planetSlice';
+import {
+  planetSelected,
+  planetUnSelected
+} from '../../../shared/store/planetSlice';
+import Dropdown from '../Dropdown/Dropdown';
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function Option({ children, value, onClick }) {
+  const handleClick = () => onClick(value);
+
+  return (
+    <button type="button" onClick={handleClick}>
+      {children}
+    </button>
+  );
 }
 
 function PlanetPicker() {
@@ -14,20 +28,37 @@ function PlanetPicker() {
   const selectedPlanet = useSelector((state) => state.planet);
   const selectedScene = useSelector((state) => state.scene);
 
-  const onChange = useCallback(
-    (event) => {
-      dispatch(planetSelected(event.target.value));
+  const handleClick = useCallback(
+    (value) => {
+      if (!value) {
+        dispatch(planetUnSelected());
+      } else {
+        dispatch(planetSelected(value));
+      }
     },
     [planetSelected]
   );
 
+  useEffect(() => {
+    dispatch(planetUnSelected());
+  }, [selectedScene]);
+
   return (
-    <select onChange={onChange} value={selectedPlanet}>
-      <option value="">Select a planet...</option>
-      {selectedScene.planets.map((planet) => (
-        <option value={planet}>{capitalizeFirstLetter(planet)}</option>
-      ))}
-    </select>
+    <div className="planet-picker">
+      <Dropdown
+        name={capitalizeFirstLetter(selectedPlanet) || 'None'}
+        hideInnerLabel
+      >
+        <Option value={null} onClick={handleClick}>
+          None
+        </Option>
+        {selectedScene.planets.map((planet) => (
+          <Option key={planet} value={planet} onClick={handleClick}>
+            {capitalizeFirstLetter(planet)}
+          </Option>
+        ))}
+      </Dropdown>
+    </div>
   );
 }
 

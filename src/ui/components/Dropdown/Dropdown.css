@@ -6,8 +6,23 @@
   background-color: gray;
 }
 
+.dropdown .dropdown-btn {
+  padding-top: 5px;
+}
+
 .dropdown:hover .dropdown-btn {
   color: peru;
+}
+
+.dropdown .text-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.dropdown .text-container .down-chevron {
+  height: 0.8em;
 }
 
 .dropdown-options {
@@ -22,6 +37,12 @@
   border-radius: 0 10px 10px 10px;
 }
 
+.dropdown-options > *:hover {
+  transform: scale(1.05);
+}
 
+.dropdown-icon {
+  width: 25px;
+}
 
 .dropdown:hover .dropdown-options { display: flex;  }

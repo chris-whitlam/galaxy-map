@@ -1,13 +1,17 @@
-import { useCallback, useRef } from 'react';
+import { useCallback } from 'react';
 import { Euler, MathUtils } from 'three';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Earth, Orbit, Moon } from '../objects';
 import { planetSelected } from '../../shared/store/planetSlice';
 import { RELATIVE_SCALE, MOON_TO_EARTH_DISTANCE } from '../data/constants';
 
-function EarthAndMoonScene({ dispatch }) {
-  const earthRef = useRef();
-  const moonRef = useRef();
+const textStyle = {
+  size: 3,
+  height: 4
+};
+
+function EarthAndMoonScene() {
+  const dispatch = useDispatch();
 
   const { planetsScale = 1, speed = 1 } = useSelector(
     (state) => state.controls
@@ -27,10 +31,10 @@ function EarthAndMoonScene({ dispatch }) {
         position={[200, 0, 0]}
       />
       <Earth
-        ref={earthRef}
         relativeScale={1 * planetsScale * 0.01}
         onClick={handlePlanetClick}
         rotationSpeed={speed * 0.48}
+        textStyle={textStyle}
       />
       <Orbit
         position={[MOON_TO_EARTH_DISTANCE / RELATIVE_SCALE, 0, 0]}
@@ -38,9 +42,9 @@ function EarthAndMoonScene({ dispatch }) {
         rotationSpeed={speed * 0.00001}
       >
         <Moon
-          ref={moonRef}
           relativeScale={0.25 * planetsScale * 0.01}
           onClick={handlePlanetClick}
+          textStyle={textStyle}
         />
       </Orbit>
     </>

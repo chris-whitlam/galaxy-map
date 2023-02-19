@@ -19,12 +19,12 @@ import {
 import { getPlanetaryData } from '../hooks/usePlanets';
 
 function SolarSystem() {
+  const dispatch = useDispatch();
   const { planetsScale = 1, speed = 1 } = useSelector(
     (state) => state.controls
   );
 
   const planetaryData = getPlanetaryData(100, planetsScale, speed * 0.0001);
-  const dispatch = useDispatch();
 
   const handlePlanetClick = useCallback((planetName) => {
     dispatch(planetSelected(planetName));

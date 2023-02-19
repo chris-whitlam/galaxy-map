@@ -1,17 +1,15 @@
-import { useThree } from '@react-three/fiber';
+import { useFrame, useThree } from '@react-three/fiber';
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader';
 import { useRef } from 'react';
-import { useSelector } from 'react-redux';
-import inter from '../assets/Inter_Regular.json';
-import { useUpdate } from '../hooks';
 
-function Text({ children, position, size = 10, color = 'white' }) {
-  const ref = useRef();
+import inter from '../assets/Inter_Regular.json';
+
+function Text({ children, position, size = 10, color = 'white', onClick }) {
+  const ref = useRef(null);
   const cameraPosition = useThree(({ camera }) => camera.position);
   const font = new FontLoader().parse(inter);
-  const { showLabels } = useSelector((state) => state.controls);
 
-  useUpdate(() => {
+  useFrame(() => {
     if (!ref.current) {
       return;
     }
@@ -20,11 +18,12 @@ function Text({ children, position, size = 10, color = 'white' }) {
     ref.current.lookAt(cameraPosition);
   });
 
-  if (!showLabels) return null;
-
   return (
-    <mesh ref={ref} position={position} visible>
-      <textGeometry args={[children, { font, size, height: 0.1 }]} />
+    <mesh ref={ref} position={position} visible onClick={onClick}>
+      <textGeometry
+        attach="geometry"
+        args={[children, { font, height: 0.1, size }]}
+      />
       <meshPhysicalMaterial transmission={10000} color={color} />
     </mesh>
   );

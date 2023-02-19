@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { ImCheckboxUnchecked, ImCheckboxChecked } from 'react-icons/im';
-import { useLoseFocus } from '../../hooks';
+import { useLoseFocus, useView } from '../../hooks';
 
 import Panel from '../Panel/Panel';
 import './Inspector.css';
@@ -16,6 +16,7 @@ function Inspector() {
   };
 
   useLoseFocus(ref, onLoseFocus);
+  const { isMobile } = useView();
 
   const planetName = useSelector((state) => state.planet);
 
@@ -44,7 +45,7 @@ function Inspector() {
   } = planetaryData[planetName] || {};
 
   useEffect(() => {
-    if (name) {
+    if (name && !isMobile) {
       setIsShown(true);
     }
   }, [name]);

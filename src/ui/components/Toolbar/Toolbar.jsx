@@ -22,6 +22,7 @@ import {
   MIN_PLANET_SCALE,
   MIN_SPEED
 } from '../../constants';
+import PlanetPicker from '../PlanetPicker/PlanetPicker';
 
 function Toolbar() {
   const dispatch = useDispatch();
@@ -71,7 +72,7 @@ function Toolbar() {
   return (
     <div className="toolbar">
       <div className="section">
-        <Dropdown name="Scenes">
+        <Dropdown name="Scenes" icon="galaxy">
           {Object.values(scenes).map((scene) => (
             <Button
               key={scene.reference}
@@ -81,7 +82,7 @@ function Toolbar() {
             </Button>
           ))}
         </Dropdown>
-        <Dropdown name="Controls">
+        <Dropdown name="Controls" icon="controls">
           <Slider
             name="Planet Scale"
             description="Scales Sun un-proportionally"
@@ -109,7 +110,7 @@ function Toolbar() {
             Reset all
           </button>
         </Dropdown>
-        <Dropdown name="Interface">
+        <Dropdown name="Interface" icon="eye">
           <Checkbox
             name="showOrbits"
             onChange={toggleOrbitLines}
@@ -132,6 +133,9 @@ function Toolbar() {
             Show Interface
           </Checkbox>
         </Dropdown>
+      </div>
+      <div className="section">
+        <PlanetPicker />
       </div>
       <div className="section">
         <button type="button" onClick={togglePause}>

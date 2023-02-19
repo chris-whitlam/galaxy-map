@@ -1,3 +1,26 @@
-.planetPicker {
+.planet-picker {
   background-color: peru;
+  height: 100%;
+  accent-color: peru;
+  width: 100%;
+  text-align: center;
+}
+
+.planet-picker .dropdown {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.planet-picker .dropdown span {
+  font-weight: bold;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+}
+
+.planet-picker .dropdown .dropdown-options {
+  width: 100%;
+  border-radius: 0 0 10px 10px;
+  justify-content: center;
+  align-items: center;
 }
