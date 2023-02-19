@@ -12,6 +12,7 @@ import {
 
 const initialState = {
   isPaused: false,
+  isFullscreen: false,
   showOrbitLines: true,
   showInterface: true,
   showLabels: false,
@@ -27,6 +28,12 @@ const controlsSlice = createSlice({
       return {
         ...state,
         isPaused: !state.isPaused
+      };
+    },
+    toggleFullscreen(state) {
+      return {
+        ...state,
+        isFullscreen: !state.isFullscreen
       };
     },
     toggleOrbitLines(state) {
@@ -119,6 +126,7 @@ const controlsSlice = createSlice({
 
 export const {
   togglePause,
+  toggleFullscreen,
   toggleOrbitLines,
   toggleInterface,
   toggleLabels,

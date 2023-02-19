@@ -22,7 +22,12 @@ export function Canvas({ scene }) {
   );
 
   return (
-    <ThreeCanvas dpr={[1.5, 2]} linear shadows>
+    <ThreeCanvas
+      dpr={[1.5, 2]}
+      linear
+      shadows
+      style={{ height: '100vh', width: '100vw' }}
+    >
       <ReduxProvider store={store}>
         <OrbitControlsProvider>
           <BaseScene camera={scene.camera}>

@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { AiFillFilter } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import {
   toggleOrbitLines,
@@ -7,7 +8,8 @@ import {
   incrementPlanetScale,
   decrementPlanetScale,
   incrementSpeed,
-  decrementSpeed
+  decrementSpeed,
+  toggleFullscreen
 } from '../../../shared/store/controlsSlice';
 
 function KeyboardControls({ children }) {

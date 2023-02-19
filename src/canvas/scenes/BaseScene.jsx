@@ -1,9 +1,8 @@
-import { useThree } from '@react-three/fiber';
+import { useFrame, useThree } from '@react-three/fiber';
 import { OrbitControls, PerspectiveCamera, Stars } from '@react-three/drei';
 import { useEffect, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { Vector3 } from 'three';
-import { useUpdate } from '../hooks';
 import { useOrbitControls } from '../providers';
 
 const deg2rad = (degrees) => degrees * (Math.PI / 180);
@@ -25,7 +24,7 @@ function CameraOrbit() {
     [selectedPlanet]
   );
 
-  useUpdate(() => {
+  useFrame(() => {
     if (!selectedPlanetObject) return;
     const target = new Vector3();
     selectedPlanetObject.getWorldPosition(target);

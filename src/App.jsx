@@ -1,7 +1,7 @@
 import './App.css';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { Canvas } from './canvas/Canvas';
 import {
   Inspector,
@@ -10,8 +10,10 @@ import {
   Modal,
   KeyboardControls
 } from './ui/components';
-
-import { toggleInterface as toggleInterfaceAction } from './shared/store/controlsSlice';
+import {
+  toggleFullscreen as toggleFullScreenAction,
+  toggleInterface as toggleInterfaceAction
+} from './shared/store/controlsSlice';
 
 import { useLocalStorage } from './shared/hooks';
 
@@ -19,6 +21,7 @@ const SEEN_WARNING_LOCAL_STORAGE_KEY = 'seenWarning';
 
 function App() {
   const dispatch = useDispatch();
+  const appContainer = useRef();
   const { getValue, storeValue } = useLocalStorage();
   const [fade, setFade] = useState();
   const hasSeenWarning = getValue(SEEN_WARNING_LOCAL_STORAGE_KEY);
@@ -32,6 +35,17 @@ function App() {
     return () => clearTimeout(fadeOut);
   }, [state.scene.reference]);
 
+  useEffect(() => {
+    const onFullscreenChange = () => {
+      dispatch(toggleFullScreenAction());
+    };
+
+    document.addEventListener('fullscreenchange', onFullscreenChange);
+
+    return () =>
+      document.removeEventListener('fullscreenchange', onFullscreenChange);
+  }, []);
+
   const onCloseModal = useCallback(() => {
     setShowModal(false);
     storeValue(SEEN_WARNING_LOCAL_STORAGE_KEY, true);
@@ -42,7 +56,7 @@ function App() {
   };
 
   return (
-    <>
+    <div ref={appContainer}>
       <div className="ui-container">
         <Modal
           isOpen={showModal}
@@ -74,7 +88,7 @@ function App() {
         </KeyboardControls>
       </div>
       <Canvas scene={state.scene} />
-    </>
+    </div>
   );
 }
 

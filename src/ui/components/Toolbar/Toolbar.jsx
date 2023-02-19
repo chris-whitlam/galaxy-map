@@ -1,11 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { FaPause, FaPlay } from 'react-icons/fa';
+import { AiOutlineFullscreenExit, AiOutlineFullscreen } from 'react-icons/ai';
+import { useEffect } from 'react';
 import Dropdown from '../Dropdown/Dropdown';
 import Checkbox from '../Checkbox/Checkbox';
 import { changeScene } from '../../../shared/store/sceneSlice';
 import {
   toggleOrbitLines as toggleOrbitLinesAction,
   togglePause as togglePauseAction,
+  toggleFullscreen as toggleFullScreenAction,
   toggleInterface as toggleInterfaceAction,
   toggleLabels as toggleLabelsAction,
   setPlanetsScale,
@@ -26,9 +29,11 @@ import PlanetPicker from '../PlanetPicker/PlanetPicker';
 
 function Toolbar() {
   const dispatch = useDispatch();
+  const isFullscreenAllowed = document.fullscreenEnabled;
 
   const {
     isPaused,
+    isFullscreen,
     showOrbitLines,
     showInterface,
     speed,
@@ -43,6 +48,14 @@ function Toolbar() {
 
   const togglePause = () => {
     dispatch(togglePauseAction());
+  };
+
+  const toggleFullScreen = () => {
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+    } else {
+      document.body.requestFullscreen();
+    }
   };
 
   const toggleOrbitLines = () => {
@@ -139,9 +152,18 @@ function Toolbar() {
         <PlanetPicker />
       </div>
       <div className="section">
-        <button type="button" className="pause-btn" onClick={togglePause}>
-          {isPaused ? <FaPlay /> : <FaPause />}
+        <button type="button" onClick={togglePause}>
+          {isPaused ? <FaPlay size={20} /> : <FaPause size={20} />}
         </button>
+        {isFullscreenAllowed && (
+          <button type="button" onClick={toggleFullScreen}>
+            {isFullscreen ? (
+              <AiOutlineFullscreenExit size={25} />
+            ) : (
+              <AiOutlineFullscreen size={25} />
+            )}
+          </button>
+        )}
       </div>
     </div>
   );
