@@ -14,7 +14,7 @@ const initialState = {
   isPaused: false,
   showOrbitLines: true,
   showInterface: true,
-  showLabels: true,
+  showLabels: false,
   planetsScale: 100,
   speed: 5
 };
