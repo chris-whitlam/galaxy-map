@@ -27,6 +27,11 @@
   left: 5px;
   top: 10%;
   height: 80%;
+  color: black;
+}
+
+.panel-toggle:hover {
+  color: black;
 }
 
 .panel-closed {
