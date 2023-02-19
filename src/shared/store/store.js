@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import planetReducer from './planetSlice';
 import sceneReducer from './sceneSlice';
 import controlsReducer from './controlsSlice';
-import { localStorageMiddleware, reHydrateStore } from './middleware';
+import { sessionStorageMiddleware, reHydrateStore } from './middleware';
 
 const store = configureStore({
   reducer: {
@@ -12,7 +12,7 @@ const store = configureStore({
   },
   preloadedState: reHydrateStore(),
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(localStorageMiddleware),
+    getDefaultMiddleware().concat(sessionStorageMiddleware),
   devTools: process.env.NODE_ENV !== 'production'
 });
 

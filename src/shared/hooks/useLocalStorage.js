@@ -1,14 +1,14 @@
-const LOCAL_STORAGE_NAMESPACE = 'ssm';
+const SESSION_STORAGE_NAMESPACE = 'ssm';
 
-function useLocalStorage() {
+function useSessionStorage() {
   const storeValue = (name, value) =>
-    localStorage.setItem(
-      `${LOCAL_STORAGE_NAMESPACE}/${name}`,
+    sessionStorage.setItem(
+      `${SESSION_STORAGE_NAMESPACE}/${name}`,
       JSON.stringify(value)
     );
 
   const getValue = (name) =>
-    JSON.parse(localStorage.getItem(`${LOCAL_STORAGE_NAMESPACE}/${name}`));
+    JSON.parse(sessionStorage.getItem(`${SESSION_STORAGE_NAMESPACE}/${name}`));
 
   return {
     storeValue,
@@ -16,4 +16,4 @@ function useLocalStorage() {
   };
 }
 
-export default useLocalStorage;
+export default useSessionStorage;

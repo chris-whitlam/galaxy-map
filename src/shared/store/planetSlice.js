@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const planetSlice = createSlice({
   name: 'planet',
-  initialState: {},
+  initialState: '',
   reducers: {
     planetSelected(state, action) {
       return action.payload;
