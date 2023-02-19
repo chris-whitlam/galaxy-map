@@ -1,14 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { FaPause, FaPlay } from 'react-icons/fa';
 import { AiOutlineFullscreenExit, AiOutlineFullscreen } from 'react-icons/ai';
-import { useEffect } from 'react';
 import Dropdown from '../Dropdown/Dropdown';
 import Checkbox from '../Checkbox/Checkbox';
 import { changeScene } from '../../../shared/store/sceneSlice';
 import {
   toggleOrbitLines as toggleOrbitLinesAction,
   togglePause as togglePauseAction,
-  toggleFullscreen as toggleFullScreenAction,
   toggleInterface as toggleInterfaceAction,
   toggleLabels as toggleLabelsAction,
   setPlanetsScale,
