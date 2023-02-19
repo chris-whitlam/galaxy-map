@@ -12,6 +12,9 @@ const planetSlice = createSlice({
     planetUnSelected(state, action) {
       return '';
     }
+  },
+  extraReducers: (builder) => {
+    builder.addDefaultCase((state, action) => '');
   }
 });
 
