@@ -13,7 +13,6 @@
   max-height: 42vh;
   padding-right: 20px;
   overflow-y: scroll;
-  scrollbar-color: black;
 }
 
 ::-webkit-scrollbar {

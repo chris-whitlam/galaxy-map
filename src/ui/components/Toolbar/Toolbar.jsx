@@ -15,7 +15,7 @@ import {
 import './Toolbar.css';
 import scenes from '../../../shared/data/scenes';
 import Slider from '../Slider/Slider';
-import Button from '../Button/Button';
+
 import {
   MAX_PLANET_SCALE,
   MAX_SPEED,
@@ -74,12 +74,13 @@ function Toolbar() {
       <div className="section">
         <Dropdown name="Scenes" icon="galaxy">
           {Object.values(scenes).map((scene) => (
-            <Button
+            <button
+              type="button"
               key={scene.reference}
               onClick={() => handleSceneChange(scene.reference)}
             >
               {scene.label}
-            </Button>
+            </button>
           ))}
         </Dropdown>
         <Dropdown name="Controls" icon="controls">
@@ -138,7 +139,7 @@ function Toolbar() {
         <PlanetPicker />
       </div>
       <div className="section">
-        <button type="button" onClick={togglePause}>
+        <button type="button" className="pause-btn" onClick={togglePause}>
           {isPaused ? <FaPlay /> : <FaPause />}
         </button>
       </div>
